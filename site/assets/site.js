@@ -112,6 +112,11 @@
     var running = false, last = 0, raf = 0;
     var visible = true;
     var hovered = false;
+    // phones and tablets: an autopilot "glow" wanders the field, ripples fire on their own,
+    // a finger drag steers the glow, and the field parallaxes as you scroll
+    var touchy = window.matchMedia('(hover: none), (max-width: 700px)');
+    var auto = { on: false, x: 0, y: 0, lastRipple: 0, steerUntil: 0 };
+    var drift = { x: 0, y: 0 };
 
     var palette = {
       plum:    { base: [105, 38, 90],  hot: [199, 123, 201] },
@@ -134,7 +139,7 @@
       size = W < 700 ? 44 : (W < 1100 ? 56 : 64);
       gap = W < 700 ? 4 : 5;
       cols = Math.ceil(W / (size + gap)) + 1;
-      rows = Math.ceil(H / (size + gap)) + 1;
+      rows = Math.ceil(H / (size + gap)) + 2; cols += 1;
       cells = [];
       for (var r = 0; r < rows; r++) {
         for (var c = 0; c < cols; c++) {
@@ -153,6 +158,25 @@
 
     function drawFrame(t, dt) {
       ctx.clearRect(0, 0, W, H);
+      auto.on = touchy.matches && !reduceMotion.matches;
+      if (auto.on) {
+        if (t > auto.steerUntil) {
+          // slow figure-of-eight across the field
+          auto.x = W * (0.5 + 0.38 * Math.sin(t / 2300));
+          auto.y = H * (0.5 + 0.34 * Math.sin(t / 1650 + 1.1));
+          pointer.x = lerp(pointer.x < -999 ? auto.x : pointer.x, auto.x, 0.08);
+          pointer.y = lerp(pointer.y < -999 ? auto.y : pointer.y, auto.y, 0.08);
+          pointer.active = true;
+        }
+        if (t - auto.lastRipple > 3200 && ripples.length < 3) {
+          auto.lastRipple = t;
+          ripples.push({ x: W * (0.15 + 0.7 * Math.random()), y: H * (0.15 + 0.7 * Math.random()), t0: t });
+        }
+        // gentle drift of the whole grid
+        drift.x = Math.sin(t / 3100) * size * 0.35;
+        drift.y = Math.cos(t / 2700) * size * 0.25;
+      } else { drift.x = 0; drift.y = 0; }
+      ctx.save(); ctx.translate(drift.x - size * 0.5, drift.y - size * 0.5);
       var idle = reduceMotion.matches ? 0 : 1;
       var px = pointer.x, py = pointer.y, pr = size * 3.8;
       var decay = Math.pow(0.1, dt / 900);
@@ -174,7 +198,7 @@
           if (band < size * 1.1) cell.heat = Math.min(1, cell.heat + (1 - band / (size * 1.1)) * 0.35 * Math.max(0, 1 - age / 2.2));
         }
         cell.heat *= decay;
-        var wave = idle * 0.10 * (0.5 + 0.5 * Math.sin(t / 1400 + (cell.c * 0.55 + cell.r * 0.35) + cell.phase * 0.3));
+        var wave = idle * (auto.on ? 0.16 : 0.10) * (0.5 + 0.5 * Math.sin(t / 1400 + (cell.c * 0.55 + cell.r * 0.35) + cell.phase * 0.3));
         var pal = palette[cell.t];
         var k2 = Math.min(1, cell.heat + wave);
         var col = [lerp(pal.base[0], pal.hot[0], k2), lerp(pal.base[1], pal.hot[1], k2), lerp(pal.base[2], pal.hot[2], k2)];
@@ -186,6 +210,7 @@
         ctx.fillStyle = 'rgba(255,255,255,' + (0.05 + cell.heat * 0.10).toFixed(3) + ')';
         ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + s, y); ctx.lineTo(x, y + s); ctx.closePath(); ctx.fill();
       }
+      ctx.restore();
       ripples = ripples.filter(function (rp) { return t - rp.t0 < 2400; });
     }
 
@@ -212,6 +237,21 @@
       if (ripples.length < 4) ripples.push({ x: e.clientX - r.left, y: e.clientY - r.top, t0: performance.now() });
       start();
     });
+    // touch: dragging a finger steers the glow (scrolling still works)
+    function steer(e) {
+      if (!auto.on || !e.touches || !e.touches[0]) return;
+      var r = canvas.getBoundingClientRect();
+      pointer.x = e.touches[0].clientX - r.left; pointer.y = e.touches[0].clientY - r.top;
+      pointer.active = true; auto.steerUntil = performance.now() + 1400; start();
+    }
+    hero.addEventListener('touchstart', steer, { passive: true });
+    hero.addEventListener('touchmove', steer, { passive: true });
+    // scroll parallax on phones: the field lags behind the copy
+    window.addEventListener('scroll', function () {
+      if (!touchy.matches || reduceMotion.matches) { canvas.style.transform = ''; return; }
+      var y = Math.min(window.scrollY, hero.offsetHeight);
+      canvas.style.transform = 'translate3d(0,' + (y * 0.35).toFixed(1) + 'px,0) scale(' + (1 + y / 4000).toFixed(3) + ')';
+    }, { passive: true });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) start(); else { running = false; cancelAnimationFrame(raf); } }).observe(hero);
     }

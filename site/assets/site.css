@@ -260,10 +260,23 @@ body.menu-open { overflow: hidden; }
   .hero__scrim {
     background:
       linear-gradient(180deg, rgba(43,13,38,.8) 0%, rgba(43,13,38,0) 150px),
-      linear-gradient(180deg, rgba(68,20,60,.9) 0%, rgba(68,20,60,.84) 60%, rgba(68,20,60,.72) 100%);
+      linear-gradient(180deg, rgba(68,20,60,.8) 0%, rgba(68,20,60,.66) 55%, rgba(68,20,60,.4) 100%);
   }
   .hero__note { color: rgba(255,255,255,.9); }
+  .hero h1, .hero .lead { text-shadow: 0 2px 18px rgba(43,13,38,.55); }
 }
+/* phones: copy rises in on load, and the headline floats gently */
+@media (max-width: 700px) and (prefers-reduced-motion: no-preference) {
+  .hero__field { will-change: transform; }
+  .hero__inner > * { animation: hero-rise .8s cubic-bezier(.2,.7,.2,1) both; }
+  .hero__inner > :nth-child(2) { animation-delay: .1s; }
+  .hero__inner > :nth-child(3) { animation-delay: .2s; }
+  .hero__inner > :nth-child(4) { animation-delay: .3s; }
+  .hero__inner > :nth-child(5) { animation-delay: .4s; }
+  .hero h1 { animation: hero-rise .8s .1s cubic-bezier(.2,.7,.2,1) both, hero-float 6s 1s ease-in-out infinite; }
+}
+@keyframes hero-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes hero-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 @media (hover: none) { .hero__field { cursor: default; } }
 
 /* ---------- Section scaffolding ---------- */
