@@ -1,0 +1,32 @@
+# Render Blueprint - deploys the site as a static site.
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: cumbernauld-law
+    runtime: static
+    buildCommand: node build.mjs
+    staticPublishPath: ./site
+    pullRequestPreviewsEnabled: false
+    envVars:
+      # Set to the live address once a custom domain is attached, e.g. https://www.cumbernauldlaw.co.uk
+      - key: SITE_URL
+        sync: false
+      # Optional: a form endpoint (for example a Formspree form URL) to make the enquiry form send email.
+      - key: FORM_ENDPOINT
+        sync: false
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=()
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=604800

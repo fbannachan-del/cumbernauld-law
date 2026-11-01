@@ -1,0 +1,52 @@
+{
+  "name": "The Cumbernauld Law Practice",
+  "tagline": "Serving all of Cumbernauld and beyond.",
+  "formed": "1 May 2017",
+  "formedFrom": [
+    "Barrowman & Partners",
+    "Ian S Smart & Company"
+  ],
+  "about": "The Cumbernauld Law Practice was formed on 1st May 2017 through the combination of the two longstanding Cumbernauld based legal practices of Barrowman & Partners and Ian S Smart & Company. The firm offers a full general practice legal service including, if required, both civil and criminal legal aid.",
+  "legalAid": true,
+  "address": {
+    "line1": "30 Ettrick Walk",
+    "town": "Cumbernauld",
+    "postcode": "G67 1NE",
+    "note": "Ettrick Walk is on the town centre rooftop next to The Carrickstone bar/restaurant."
+  },
+  "phone": "01236 731911",
+  "phoneHref": "tel:+441236731911",
+  "fax": "01236 730038",
+  "hours": [
+    {
+      "days": "Monday to Friday",
+      "times": "9:00 am to 1:00 pm and 2:00 pm to 5:00 pm"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/cumbernauldlaw",
+    "linkedin": "https://www.linkedin.com/company/the-cumbernauld-law-practice",
+    "twitter": "https://twitter.com/CumbernauldLaw"
+  },
+  "mapQuery": "30 Ettrick Walk, Cumbernauld, G67 1NE",
+  "mapLatLng": [
+    55.948698,
+    -3.988013
+  ],
+  "alsoServes": [
+    "Airdrie",
+    "Coatbridge",
+    "Falkirk",
+    "Glasgow",
+    "Hamilton"
+  ],
+  "formIntro": [
+    "You may contact us by filling in this form any time you need professional support or have any questions.",
+    "You can also fill in the form to leave your comments or feedback."
+  ],
+  "formHelp": [
+    "Please limit your entry to 100 words.",
+    "Anything greater may not be considered without a chargeable appointment."
+  ],
+  "formConfidentialityNote": "Please do not include confidential or sensitive information in your message. In the event that we are representing a party with opposing interests to your own, we may have a duty to disclose any information you provide to our client."
+}

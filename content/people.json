@@ -1,0 +1,233 @@
+[
+  {
+    "slug": "sharon-gardner",
+    "name": "Sharon Gardner",
+    "group": "lawyers",
+    "role": "Partner and family law solicitor",
+    "focus": [
+      "Family law",
+      "Children’s cases",
+      "Mediation"
+    ],
+    "bio": [
+      "Sharon Gardner qualified in 2000 from Strathclyde University. She commenced her career with one of the largest legal aid firms in Glasgow specialising in criminal and family law. In 2011 Sharon moved to Barrowman & Partners Solicitors as a partner.",
+      "Sharon specialises in family law and has particular interest in cases involving children and family mediation. Sharon also acts as overall managing partner of the firm. She holds the additional qualification of being a Comprehensive Accredited Law Mediator."
+    ],
+    "photo": "sharon-gardner",
+    "qualifications": [
+      "Comprehensive Accredited Law Mediator"
+    ]
+  },
+  {
+    "slug": "lisa-oneil",
+    "name": "Lisa Marie O’Neil",
+    "group": "lawyers",
+    "role": "Partner, conveyancing and executries",
+    "focus": [
+      "Conveyancing",
+      "Executries"
+    ],
+    "bio": [
+      "Lisa graduated from the University of Dundee in 2003 and joined Ian S Smart & Company initially as a paralegal later that year. In the years between while bringing up a family she completed the Diploma in Legal Practice and fully qualified as a solicitor.",
+      "She was made an associate with Ian S Smart & Company in 2014 and became one of the founding partners of the Cumbernauld Law Practice. Lisa’s main areas of practice are in the field of domestic conveyance and executry work and she is in overall charge of the firm’s conveyancing department."
+    ],
+    "photo": "lisa-oneil",
+    "qualifications": [
+      "Diploma in Legal Practice"
+    ]
+  },
+  {
+    "slug": "ian-smart",
+    "name": "Ian S Smart",
+    "group": "lawyers",
+    "role": "Consultant, former senior partner",
+    "focus": [
+      "General litigation",
+      "Criminal defence",
+      "Personal injury"
+    ],
+    "bio": [
+      "Ian Smart is our former senior partner and recently retired legal consultant. Ian graduated in law from The University of Glasgow in 1978 and had worked as a solicitor in Cumbernauld since 1988. From 1991 until the formation of the Cumbernauld Law Practice he was the principal solicitor at his own firm, Ian S Smart & Co.",
+      "Ian’s main areas of practice were in the field of general litigation including criminal defence work and personal injury practice. From 2009-2010 Ian was President of the Law Society of Scotland. Ian now acts as a ‘non-practising’ legal consultant for the firm."
+    ],
+    "photo": "ian-smart",
+    "qualifications": [
+      "President of the Law Society of Scotland 2009-2010"
+    ]
+  },
+  {
+    "slug": "caroline-mcgrath",
+    "name": "Caroline McGrath",
+    "group": "lawyers",
+    "role": "Solicitor and Notary Public",
+    "focus": [
+      "Family law",
+      "Criminal defence"
+    ],
+    "bio": [
+      "Caroline joined us at the end of 2021 as a Trainee Solicitor. She is now a fully qualified Solicitor who is heavily involved in our court department, supporting Sharon Gardner with a multitude of family law matters ranging from divorce to contact and child welfare matters.",
+      "Caroline also represents clients in a range of criminal defence matters. Alongside our other solicitors, Caroline is also a Notary Public."
+    ],
+    "photo": null,
+    "qualifications": [
+      "Notary Public"
+    ]
+  },
+  {
+    "slug": "david-hogg",
+    "name": "David Hogg",
+    "group": "lawyers",
+    "role": "Trainee solicitor",
+    "focus": [
+      "Private client",
+      "Court department"
+    ],
+    "bio": [
+      "David has been with the practice since early 2022 and is a Trainee Solicitor, having initially joined the practice as a Legal Assistant. He graduated from the University of Strathclyde in 2026 and officially joined as our Trainee Solicitor in June of that year.",
+      "David mainly supports Lisa O’Neil in the private client department, although, deals with a small number of matters alongside Sharon Gardner in our court department."
+    ],
+    "photo": null,
+    "qualifications": []
+  },
+  {
+    "slug": "jessica-small",
+    "name": "Jessica Small",
+    "group": "lawyers",
+    "role": "Trainee solicitor",
+    "focus": [
+      "Family law",
+      "Court department"
+    ],
+    "bio": [
+      "Jessica joined The Cumbernauld Law Practice in April 2026 as a Legal Assistant. She is now a Trainee Solicitor having graduated from the University of Strathclyde in May 2026. She assists Sharon Gardner and Caroline McGrath in our court department dealing with a variety of family law matters."
+    ],
+    "photo": null,
+    "qualifications": []
+  },
+  {
+    "slug": "jennifer-adam",
+    "name": "Jennifer Adam",
+    "group": "support",
+    "role": "Conveyancing paralegal",
+    "focus": [
+      "Domestic conveyancing"
+    ],
+    "bio": [
+      "Jennifer is our principal point of contact for domestic conveyancing. Having started her working life as a junior with Ian S Smart & Co, she obtained the Certificate of Professional Development in Conveyancing Practice from The University of Strathclyde in 2000 and has worked as a conveyancing paralegal since then. She joined Barrowman & Partners in 2006."
+    ],
+    "photo": "jennifer-adam",
+    "qualifications": [
+      "Certificate of Professional Development in Conveyancing Practice"
+    ]
+  },
+  {
+    "slug": "carol-mcdonald",
+    "name": "Carol McDonald",
+    "group": "support",
+    "role": "Paralegal, conveyancing and executries",
+    "focus": [
+      "Conveyancing",
+      "Executries"
+    ],
+    "bio": [
+      "Carol works alongside Jennifer as a paralegal in the firm’s conveyancing department. Carol also works alongside Lisa O’Neil in the private client department as a fully qualified executry paralegal.",
+      "Having spent her entire working career in the law, she joined Barrowman & Partners in that capacity in 2014. Carol also deals with the firm’s extensive domestic conveyancing portfolio."
+    ],
+    "photo": "carol-mcdonald",
+    "qualifications": [
+      "Fully qualified executry paralegal"
+    ]
+  },
+  {
+    "slug": "suzanne-macdonald",
+    "name": "Suzanne MacDonald",
+    "group": "support",
+    "role": "Cashroom and secretarial support",
+    "focus": [
+      "Cashroom",
+      "Secretarial support"
+    ],
+    "bio": [
+      "Suzanne splits her time between cashroom duty and general secretarial support. She has worked with Barrowman & Partners all of her working life gaining, on the way, a wide and informed knowledge of most areas of the law."
+    ],
+    "photo": "suzanne-macdonald",
+    "qualifications": []
+  },
+  {
+    "slug": "yvonne-stewart",
+    "name": "Yvonne Stewart",
+    "group": "support",
+    "role": "Legal secretary and PA to Sharon Gardner",
+    "focus": [
+      "Legal secretarial"
+    ],
+    "bio": [
+      "Yvonne is personal assistant to Miss Gardner and is also a widely experienced legal secretary having worked with Barrowman & Partners since 2005.",
+      "As with our other support staff she is likely to be someone with whom Miss Gardner’s clients have regular contact, particularly if Miss Gardner herself is in court."
+    ],
+    "photo": "yvonne-stewart",
+    "qualifications": []
+  },
+  {
+    "slug": "elise-mcqueen",
+    "name": "Elise McQueen",
+    "group": "support",
+    "role": "Secretary, private client",
+    "focus": [
+      "Private client",
+      "Secretarial support"
+    ],
+    "bio": [
+      "Elise is a secretary who works in all areas of the practice, providing support wherever necessary, although, predominantly contributes to our private client department. Elise has a wealth of experience within the firm, having worked in the practice since high school."
+    ],
+    "photo": null,
+    "qualifications": []
+  },
+  {
+    "slug": "marc-smith",
+    "name": "Marc Smith",
+    "group": "support",
+    "role": "Conveyancing support",
+    "focus": [
+      "Domestic conveyancing",
+      "Practice support"
+    ],
+    "bio": [
+      "Marc has been with The Cumbernauld Law Practice since 2021 and works closely alongside Jennifer and Carol in our domestic conveyancing department. Marc also provides support in all other areas of the practice.",
+      "Marc is often the first point of contact for new conveyancing matters and is currently in the process of completing additional qualifications to enhance his understanding of this area of the law."
+    ],
+    "photo": null,
+    "qualifications": []
+  },
+  {
+    "slug": "katelyn-lundy",
+    "name": "Katelyn Lundy",
+    "group": "support",
+    "role": "Receptionist",
+    "focus": [
+      "Reception",
+      "New client matters"
+    ],
+    "bio": [
+      "Katelyn joined The Cumbernauld Law Practice as our full-time receptionist in 2024. She brings a friendly and professional demeanour to the front desk, ensuring a warm welcome for all clients.",
+      "Katelyn manages various administrative tasks and helps maintain smooth communication throughout the office. She will often be the first point of contact for new client matters."
+    ],
+    "photo": null,
+    "qualifications": []
+  },
+  {
+    "slug": "zara-mcqueen",
+    "name": "Zara McQueen",
+    "group": "support",
+    "role": "Secretary, civil and criminal",
+    "focus": [
+      "Civil and criminal",
+      "Secretarial support"
+    ],
+    "bio": [
+      "Zara is a secretary who works predominantly alongside Caroline McGrath in our civil and criminal department. She provides administrative support and is currently completing her paralegal qualifications."
+    ],
+    "photo": null,
+    "qualifications": []
+  }
+]

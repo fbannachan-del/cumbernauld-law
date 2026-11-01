@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "family-law",
+    "title": "Family law",
+    "publishedTitle": "Family law",
+    "intro": "We have extensive experience of all areas of family law. Our aim is to always try and secure a negotiated settlement but, if need arises, we are regular and confident litigators in all of these fields:",
+    "items": [
+      "Divorce",
+      "Residence and contact",
+      "Children’s panel referrals",
+      "Adoptions",
+      "Separation agreements"
+    ],
+    "summary": "Divorce, children, adoption and separation agreements, negotiated where possible and litigated where needed."
+  },
+  {
+    "slug": "court-and-criminal",
+    "title": "Court and crime",
+    "publishedTitle": "Litigation (including crime)",
+    "intro": "When it comes to the more adversarial, sharp end of the law we carry a deserved reputation for fighting for our clients. This includes:",
+    "items": [
+      "Criminal defence work",
+      "Personal injury claims",
+      "Actions for payment",
+      "Redundancy agreements"
+    ],
+    "summary": "Criminal defence, personal injury claims, actions for payment and redundancy agreements."
+  },
+  {
+    "slug": "private-client",
+    "title": "Homes, wills and executries",
+    "publishedTitle": "Private Client Work",
+    "intro": "In addition to our litigation work we also provide a full private client service in the following areas:",
+    "items": [
+      "Residential conveyancing",
+      "Wills",
+      "Executries and trusts",
+      "Guardianships",
+      "Powers of attorney",
+      "Commercial conveyancing"
+    ],
+    "summary": "Buying and selling property, wills, executries, trusts, guardianships and powers of attorney."
+  },
+  {
+    "slug": "specialist-referrals",
+    "title": "Specialist referrals",
+    "publishedTitle": "Everything else!",
+    "intro": "A small firm cannot cover every area of the law, so we keep a network of specialist firms we can refer you to, at no cost to you. Areas covered include:",
+    "items": [
+      "Employment law",
+      "Immigration and asylum",
+      "Company law",
+      "Large value personal injury claims",
+      "Landlord and tenant issues"
+    ],
+    "summary": "Referrals to specialist firms for employment, immigration, company and landlord and tenant matters."
+  }
+]
