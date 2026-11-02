@@ -90,13 +90,108 @@
     });
   }
 
-  /* ---------- Smooth anchor focus: move keyboard focus to the target ---------- */
+  /* ---------- Tile curtain: the mark sweeps the screen between sections and pages ---------- */
+  var curtain = document.createElement('div');
+  curtain.className = 'curtain';
+  curtain.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(curtain);
+  var curtainBusy = false;
+  var STEP = 11, TILE_MS = 300;
+  function buildCurtain(fromX, fromY) {
+    var size = window.innerWidth < 700 ? 52 : 80;
+    var cols = Math.ceil(window.innerWidth / size), rows = Math.ceil(window.innerHeight / size);
+    curtain.style.setProperty('--cols', cols);
+    curtain.style.setProperty('--size', size + 'px');
+    var frag = document.createDocumentFragment();
+    var oc = fromX == null ? 0 : Math.round(fromX / size), orow = fromY == null ? 0 : Math.round(fromY / size);
+    var maxD = 0, tiles = [];
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var t = document.createElement('i');
+        var h = Math.abs(Math.sin((r * 13 + c * 7 + 3) * 12.9898) * 43758.5453) % 1;
+        t.className = 'curtain__t ' + (h < 0.16 ? 'is-silver' : h < 0.3 ? 'is-magenta' : h < 0.38 ? 'is-orchid' : 'is-plum');
+        var d = Math.abs(r - orow) + Math.abs(c - oc);
+        if (d > maxD) maxD = d;
+        tiles.push([t, d]);
+        frag.appendChild(t);
+      }
+    }
+    tiles.forEach(function (pair) {
+      pair[0].style.setProperty('--d', (pair[1] * STEP) + 'ms');
+      pair[0].style.setProperty('--dr', ((maxD - pair[1]) * STEP) + 'ms');
+    });
+    curtain.innerHTML = '';
+    curtain.appendChild(frag);
+    return TILE_MS + maxD * STEP;
+  }
+  function curtainIn(x, y, then) {
+    curtainBusy = true;
+    var dur = buildCurtain(x, y);
+    curtain.classList.remove('is-out');
+    void curtain.offsetWidth;
+    curtain.classList.add('is-in');
+    setTimeout(function () { then(dur); }, dur + 40);
+  }
+  function curtainOut(afterMs) {
+    curtain.classList.remove('is-in');
+    curtain.classList.add('is-out');
+    setTimeout(function () { curtain.classList.remove('is-out'); curtain.innerHTML = ''; curtainBusy = false; }, afterMs + 60);
+  }
+  var motionOn = !reduceMotion.matches;
+
+  // arriving from another page of the site: the curtain is already down, lift it
+  if (document.documentElement.classList.contains('curtain-pending')) {
+    try { sessionStorage.removeItem('tcl-curtain'); } catch (e) {}
+    var lift = buildCurtain(window.innerWidth / 2, window.innerHeight / 2);
+    curtain.classList.add('is-set');
+    document.documentElement.classList.remove('curtain-pending');
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      curtain.classList.remove('is-set');
+      curtainOut(lift);
+    }); });
+  }
+
+  /* in-page links: short hops scroll, long hops go through the curtain */
   $$('a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      var t = $(a.getAttribute('href'));
+    a.addEventListener('click', function (e) {
+      var href = a.getAttribute('href');
+      if (href === '#') return;
+      var t = $(href);
       if (!t) return;
       t.setAttribute('tabindex', '-1');
-      setTimeout(function () { t.focus({ preventScroll: true }); }, reduceMotion.matches ? 0 : 450);
+      var far = Math.abs(t.getBoundingClientRect().top) > window.innerHeight * 0.9;
+      if (!motionOn || !far || curtainBusy) {
+        setTimeout(function () { t.focus({ preventScroll: true }); }, reduceMotion.matches ? 0 : 450);
+        return;
+      }
+      e.preventDefault();
+      var x = e.clientX || window.innerWidth / 2, y = e.clientY || window.innerHeight / 2;
+      if (a.closest('.mobile-menu')) { x = window.innerWidth / 2; y = window.innerHeight / 2; }
+      curtainIn(x, y, function (dur) {
+        var prev = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+        var top = t.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0);
+        window.scrollTo(0, Math.max(0, top));
+        document.documentElement.style.scrollBehavior = prev;
+        try { history.pushState(null, '', href); } catch (err) {}
+        updateHeader();
+        t.focus({ preventScroll: true });
+        curtainOut(dur);
+      });
+    });
+  });
+
+  /* links to other pages of the site: curtain down, then go */
+  $$('a[href]').forEach(function (a) {
+    var href = a.getAttribute('href') || '';
+    if (/^(#|https?:|mailto:|tel:)/.test(href) || a.target === '_blank') return;
+    a.addEventListener('click', function (e) {
+      if (!motionOn || curtainBusy || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      curtainIn(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight / 2, function () {
+        try { sessionStorage.setItem('tcl-curtain', '1'); } catch (err) {}
+        window.location.href = a.href;
+      });
     });
   });
 
@@ -112,11 +207,6 @@
     var running = false, last = 0, raf = 0;
     var visible = true;
     var hovered = false;
-    // phones and tablets: an autopilot "glow" wanders the field, ripples fire on their own,
-    // a finger drag steers the glow, and the field parallaxes as you scroll
-    var touchy = window.matchMedia('(hover: none), (max-width: 700px)');
-    var auto = { on: false, x: 0, y: 0, lastRipple: 0, steerUntil: 0 };
-    var drift = { x: 0, y: 0 };
 
     var palette = {
       plum:    { base: [105, 38, 90],  hot: [199, 123, 201] },
@@ -136,10 +226,10 @@
       canvas.width = W * dpr; canvas.height = H * dpr;
       canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      size = W < 700 ? 44 : (W < 1100 ? 56 : 64);
-      gap = W < 700 ? 4 : 5;
+      size = W < 700 ? 34 : (W < 1100 ? 56 : 64);
+      gap = W < 700 ? 3 : 5;
       cols = Math.ceil(W / (size + gap)) + 1;
-      rows = Math.ceil(H / (size + gap)) + 2; cols += 1;
+      rows = Math.ceil(H / (size + gap)) + 1;
       cells = [];
       for (var r = 0; r < rows; r++) {
         for (var c = 0; c < cols; c++) {
@@ -158,28 +248,18 @@
 
     function drawFrame(t, dt) {
       ctx.clearRect(0, 0, W, H);
-      auto.on = touchy.matches && !reduceMotion.matches;
-      if (auto.on) {
-        if (t > auto.steerUntil) {
-          // slow figure-of-eight across the field
-          auto.x = W * (0.5 + 0.38 * Math.sin(t / 2300));
-          auto.y = H * (0.5 + 0.34 * Math.sin(t / 1650 + 1.1));
-          pointer.x = lerp(pointer.x < -999 ? auto.x : pointer.x, auto.x, 0.08);
-          pointer.y = lerp(pointer.y < -999 ? auto.y : pointer.y, auto.y, 0.08);
-          pointer.active = true;
-        }
-        if (t - auto.lastRipple > 3200 && ripples.length < 3) {
-          auto.lastRipple = t;
-          ripples.push({ x: W * (0.15 + 0.7 * Math.random()), y: H * (0.15 + 0.7 * Math.random()), t0: t });
-        }
-        // gentle drift of the whole grid
-        drift.x = Math.sin(t / 3100) * size * 0.35;
-        drift.y = Math.cos(t / 2700) * size * 0.25;
-      } else { drift.x = 0; drift.y = 0; }
-      ctx.save(); ctx.translate(drift.x - size * 0.5, drift.y - size * 0.5);
       var idle = reduceMotion.matches ? 0 : 1;
       var px = pointer.x, py = pointer.y, pr = size * 3.8;
       var decay = Math.pow(0.1, dt / 900);
+      // a slow wandering light keeps the field alive when nobody is pointing at it (phones, idle desktops)
+      var wander = idle && !pointer.active;
+      var wx = 0, wy = 0, wr = size * (W < 700 ? 4.2 : 3.4);
+      if (wander) {
+        var tt = t / 1000;
+        wx = W * (0.5 + 0.42 * Math.sin(tt * 0.21) * Math.cos(tt * 0.07));
+        wy = H * (0.45 + 0.36 * Math.sin(tt * 0.16 + 1.3));
+        if (W >= 700) { wx = W * (0.68 + 0.26 * Math.sin(tt * 0.19)); wy = H * (0.5 + 0.38 * Math.sin(tt * 0.13 + 0.8)); }
+      }
       for (var i = 0; i < cells.length; i++) {
         var cell = cells[i];
         var cx = cell.x + size / 2, cy = cell.y + size / 2;
@@ -187,6 +267,9 @@
         if (pointer.active) {
           var dx = cx - px, dy = cy - py, d = Math.sqrt(dx * dx + dy * dy);
           if (d < pr) { var k = 1 - d / pr; cell.heat = Math.min(1, cell.heat + k * k * 0.3); }
+        } else if (wander) {
+          var wdx = cx - wx, wdy = cy - wy, wd = Math.sqrt(wdx * wdx + wdy * wdy);
+          if (wd < wr) { var wk = 1 - wd / wr; cell.heat = Math.min(0.75, cell.heat + wk * wk * 0.05); }
         }
         // ripples
         for (var j = 0; j < ripples.length; j++) {
@@ -198,7 +281,7 @@
           if (band < size * 1.1) cell.heat = Math.min(1, cell.heat + (1 - band / (size * 1.1)) * 0.35 * Math.max(0, 1 - age / 2.2));
         }
         cell.heat *= decay;
-        var wave = idle * (auto.on ? 0.16 : 0.10) * (0.5 + 0.5 * Math.sin(t / 1400 + (cell.c * 0.55 + cell.r * 0.35) + cell.phase * 0.3));
+        var wave = idle * 0.10 * (0.5 + 0.5 * Math.sin(t / 1400 + (cell.c * 0.55 + cell.r * 0.35) + cell.phase * 0.3));
         var pal = palette[cell.t];
         var k2 = Math.min(1, cell.heat + wave);
         var col = [lerp(pal.base[0], pal.hot[0], k2), lerp(pal.base[1], pal.hot[1], k2), lerp(pal.base[2], pal.hot[2], k2)];
@@ -210,7 +293,6 @@
         ctx.fillStyle = 'rgba(255,255,255,' + (0.05 + cell.heat * 0.10).toFixed(3) + ')';
         ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + s, y); ctx.lineTo(x, y + s); ctx.closePath(); ctx.fill();
       }
-      ctx.restore();
       ripples = ripples.filter(function (rp) { return t - rp.t0 < 2400; });
     }
 
@@ -227,6 +309,7 @@
     function start() { if (!running && visible) { running = true; raf = requestAnimationFrame(loop); } }
 
     hero.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
       var r = canvas.getBoundingClientRect();
       pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top; pointer.active = true; hovered = true; start();
     });
@@ -237,21 +320,6 @@
       if (ripples.length < 4) ripples.push({ x: e.clientX - r.left, y: e.clientY - r.top, t0: performance.now() });
       start();
     });
-    // touch: dragging a finger steers the glow (scrolling still works)
-    function steer(e) {
-      if (!auto.on || !e.touches || !e.touches[0]) return;
-      var r = canvas.getBoundingClientRect();
-      pointer.x = e.touches[0].clientX - r.left; pointer.y = e.touches[0].clientY - r.top;
-      pointer.active = true; auto.steerUntil = performance.now() + 1400; start();
-    }
-    hero.addEventListener('touchstart', steer, { passive: true });
-    hero.addEventListener('touchmove', steer, { passive: true });
-    // scroll parallax on phones: the field lags behind the copy
-    window.addEventListener('scroll', function () {
-      if (!touchy.matches || reduceMotion.matches) { canvas.style.transform = ''; return; }
-      var y = Math.min(window.scrollY, hero.offsetHeight);
-      canvas.style.transform = 'translate3d(0,' + (y * 0.35).toFixed(1) + 'px,0) scale(' + (1 + y / 4000).toFixed(3) + ')';
-    }, { passive: true });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) start(); else { running = false; cancelAnimationFrame(raf); } }).observe(hero);
     }
@@ -438,6 +506,29 @@
         .finally(function () { button.disabled = false; button.textContent = 'Send enquiry'; });
     });
   }
+
+  /* ---------- Section choreography: the mark assembles as each section arrives ---------- */
+  if (!reduceMotion.matches && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('motion');
+    var stages = $$('.section, .site-footer');
+    var stageIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); stageIO.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
+    stages.forEach(function (el) { stageIO.observe(el); });
+    // the 2x2s and grids assemble only once they are properly on screen
+    var pieces = $$('.merge-mark, .services__grid, .people__grid, .contact__grid');
+    var pieceIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); pieceIO.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -22% 0px', threshold: 0.2 });
+    pieces.forEach(function (el) { pieceIO.observe(el); });
+    stages = stages.concat(pieces);
+    // nothing stays hidden for long, whatever the observer does
+    setTimeout(function () { stages.forEach(function (el) { el.classList.add('is-in'); }); }, 9000);
+  }
+
+  /* ---------- About: fold the longer story on phones ---------- */
+  var more = $('.about__more');
+  if (more && window.innerWidth <= 700) more.removeAttribute('open');
 
   /* ---------- Mobile call bar: shows once the hero's own buttons have scrolled away ---------- */
   var callBar = $('.call-bar');

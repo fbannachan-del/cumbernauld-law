@@ -7,6 +7,7 @@
 <meta name="description" content="Solicitors in Cumbernauld for family law, court and criminal work, conveyancing, wills, executries and powers of attorney. Civil and criminal legal aid available. 30 Ettrick Walk, Cumbernauld. Call 01236 731911.">
 <link rel="canonical" href="https://www.cumbernauldlaw.co.uk/">
 <meta name="theme-color" content="#69265a">
+<script>try{if(sessionStorage.getItem('tcl-curtain')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('curtain-pending')}catch(e){}</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Cumbernauld Law Practice">
 <meta property="og:title" content="The Cumbernauld Law Practice - Solicitors in Cumbernauld">
@@ -78,12 +79,12 @@
       <div class="hero__inner on-dark">
         <p class="hero__kicker">Serving all of Cumbernauld and beyond.</p>
         <h1 id="hero-title">Solicitors who know Cumbernauld.</h1>
-        <p class="lead">Family law, court work, house moves, wills and powers of attorney, from a local practice formed by two long-standing Cumbernauld firms. Civil and criminal legal aid where you qualify.</p>
+        <p class="lead"><span class="only-wide">Family law, court work, house moves, wills and powers of attorney, from a local practice formed by two long-standing Cumbernauld firms. Civil and criminal legal aid where you qualify.</span><span class="only-narrow">Family law, court work, house moves and wills. Legal aid where you qualify.</span></p>
         <div class="hero__actions">
           <a class="btn btn--light" href="tel:+441236731911"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Call 01236 731911</span></a>
-          <a class="btn btn--outline-light" href="#contact">Send an enquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--outline-light" href="#enquiry-form">Send an enquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
-        <p class="hero__note"><strong>30 Ettrick Walk, Cumbernauld town centre.</strong> Monday to Friday, 9 to 1 and 2 to 5.</p>
+        <p class="hero__note"><strong><span class="only-wide">30 Ettrick Walk, Cumbernauld town centre. </span>Monday to Friday, 9 to 1 and 2 to 5.</strong></p>
       </div>
     </div>
   </section>
@@ -97,8 +98,11 @@
       <div class="about__grid">
         <div class="about__story">
           <p>The Cumbernauld Law Practice was formed on 1st May 2017 through the combination of the two longstanding Cumbernauld based legal practices of Barrowman &amp; Partners and Ian S Smart &amp; Company. The firm offers a full general practice legal service including, if required, both civil and criminal legal aid.</p>
-          <p>Six solicitors and trainees work alongside a support team of eight. We handle most matters in-house, and where a case needs a specialist we refer it to another firm at no cost to you.</p>
-          <p>Whether it is a divorce, a court date, a house purchase or a will, you will deal with people who live and work here and who know how things are done locally. We are members of the Law Society of Scotland, and we also act for clients in Airdrie, Coatbridge, Falkirk, Glasgow and Hamilton.</p>
+          <details class="about__more" open>
+            <summary>More about the practice</summary>
+            <p>Six solicitors and trainees work alongside a support team of eight. We handle most matters in-house, and where a case needs a specialist we refer it to another firm at no cost to you.</p>
+            <p>Whether it is a divorce, a court date, a house purchase or a will, you will deal with people who live and work here and who know how things are done locally. We are members of the Law Society of Scotland, and we also act for clients in Airdrie, Coatbridge, Falkirk, Glasgow and Hamilton.</p>
+          </details>
         </div>
         <div>
           <div class="merge-mark" role="img" aria-label="Barrowman and Partners and Ian S Smart and Company became The Cumbernauld Law Practice on 1 May 2017">
@@ -124,21 +128,25 @@
     <span class="service-tile__cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
     <span class="service-tile__title">Family law</span>
     <span class="service-tile__summary">Divorce, children, adoption and separation agreements, negotiated where possible and litigated where needed.</span>
+    <span class="service-tile__tags">Divorce, children, separation</span>
   </button>
 <button class="service-tile service-tile--silver" type="button" id="svc-court-and-criminal" data-panel-source="#tpl-court-and-criminal" aria-controls="services-panel">
     <span class="service-tile__cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
     <span class="service-tile__title">Court and crime</span>
     <span class="service-tile__summary">Criminal defence, personal injury claims, actions for payment and redundancy agreements.</span>
+    <span class="service-tile__tags">Defence, injury claims, disputes</span>
   </button>
 <button class="service-tile service-tile--silver" type="button" id="svc-private-client" data-panel-source="#tpl-private-client" aria-controls="services-panel">
     <span class="service-tile__cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
     <span class="service-tile__title">Homes, wills and executries</span>
     <span class="service-tile__summary">Buying and selling property, wills, executries, trusts, guardianships and powers of attorney.</span>
+    <span class="service-tile__tags">Buying, selling, wills, executries</span>
   </button>
 <button class="service-tile service-tile--plum" type="button" id="svc-specialist-referrals" data-panel-source="#tpl-specialist-referrals" aria-controls="services-panel">
     <span class="service-tile__cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
     <span class="service-tile__title">Specialist referrals</span>
     <span class="service-tile__summary">Referrals to specialist firms for employment, immigration, company and landlord and tenant matters.</span>
+    <span class="service-tile__tags">Employment, immigration, company</span>
   </button>
         <div class="panel" id="services-panel" aria-live="polite">
           <div><div class="panel__inner"><div class="panel__card"></div></div></div>
@@ -159,7 +167,7 @@
   </ul>
   <div class="panel__actions">
     <a class="btn" href="tel:+441236731911"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Call 01236 731911</span></a>
-    <a class="btn btn--ghost" href="#contact">Send an enquiry</a>
+    <a class="btn btn--ghost" href="#enquiry-form">Send an enquiry</a>
     <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
   </div>
 </template>
@@ -176,7 +184,7 @@
   </ul>
   <div class="panel__actions">
     <a class="btn" href="tel:+441236731911"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Call 01236 731911</span></a>
-    <a class="btn btn--ghost" href="#contact">Send an enquiry</a>
+    <a class="btn btn--ghost" href="#enquiry-form">Send an enquiry</a>
     <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
   </div>
 </template>
@@ -195,7 +203,7 @@
   </ul>
   <div class="panel__actions">
     <a class="btn" href="tel:+441236731911"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Call 01236 731911</span></a>
-    <a class="btn btn--ghost" href="#contact">Send an enquiry</a>
+    <a class="btn btn--ghost" href="#enquiry-form">Send an enquiry</a>
     <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
   </div>
 </template>
@@ -213,7 +221,7 @@
   </ul>
   <div class="panel__actions">
     <a class="btn" href="tel:+441236731911"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Call 01236 731911</span></a>
-    <a class="btn btn--ghost" href="#contact">Send an enquiry</a>
+    <a class="btn btn--ghost" href="#enquiry-form">Send an enquiry</a>
     <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
   </div>
 </template>
@@ -357,7 +365,7 @@
     <p>Sharon specialises in family law and has particular interest in cases involving children and family mediation. Sharon also acts as overall managing partner of the firm. She holds the additional qualification of being a Comprehensive Accredited Law Mediator.</p>
     <ul class="person-detail__quals" aria-label="Qualifications"><li>Comprehensive Accredited Law Mediator</li></ul>
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -370,7 +378,7 @@
     <p>She was made an associate with Ian S Smart &amp; Company in 2014 and became one of the founding partners of the Cumbernauld Law Practice. Lisa’s main areas of practice are in the field of domestic conveyance and executry work and she is in overall charge of the firm’s conveyancing department.</p>
     <ul class="person-detail__quals" aria-label="Qualifications"><li>Diploma in Legal Practice</li></ul>
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -383,7 +391,7 @@
     <p>Ian’s main areas of practice were in the field of general litigation including criminal defence work and personal injury practice. From 2009-2010 Ian was President of the Law Society of Scotland. Ian now acts as a ‘non-practising’ legal consultant for the firm.</p>
     <ul class="person-detail__quals" aria-label="Qualifications"><li>President of the Law Society of Scotland 2009-2010</li></ul>
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -396,7 +404,7 @@
     <p>Caroline also represents clients in a range of criminal defence matters. Alongside our other solicitors, Caroline is also a Notary Public.</p>
     <ul class="person-detail__quals" aria-label="Qualifications"><li>Notary Public</li></ul>
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -409,7 +417,7 @@
     <p>David mainly supports Lisa O’Neil in the private client department, although, deals with a small number of matters alongside Sharon Gardner in our court department.</p>
     
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -421,7 +429,7 @@
     <p>Jessica joined The Cumbernauld Law Practice in April 2026 as a Legal Assistant. She is now a Trainee Solicitor having graduated from the University of Strathclyde in May 2026. She assists Sharon Gardner and Caroline McGrath in our court department dealing with a variety of family law matters.</p>
     
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -433,7 +441,7 @@
     <p>Jennifer is our principal point of contact for domestic conveyancing. Having started her working life as a junior with Ian S Smart &amp; Co, she obtained the Certificate of Professional Development in Conveyancing Practice from The University of Strathclyde in 2000 and has worked as a conveyancing paralegal since then. She joined Barrowman &amp; Partners in 2006.</p>
     <ul class="person-detail__quals" aria-label="Qualifications"><li>Certificate of Professional Development in Conveyancing Practice</li></ul>
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -446,7 +454,7 @@
     <p>Having spent her entire working career in the law, she joined Barrowman &amp; Partners in that capacity in 2014. Carol also deals with the firm’s extensive domestic conveyancing portfolio.</p>
     <ul class="person-detail__quals" aria-label="Qualifications"><li>Fully qualified executry paralegal</li></ul>
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -458,7 +466,7 @@
     <p>Suzanne splits her time between cashroom duty and general secretarial support. She has worked with Barrowman &amp; Partners all of her working life gaining, on the way, a wide and informed knowledge of most areas of the law.</p>
     
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -471,7 +479,7 @@
     <p>As with our other support staff she is likely to be someone with whom Miss Gardner’s clients have regular contact, particularly if Miss Gardner herself is in court.</p>
     
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -483,7 +491,7 @@
     <p>Elise is a secretary who works in all areas of the practice, providing support wherever necessary, although, predominantly contributes to our private client department. Elise has a wealth of experience within the firm, having worked in the practice since high school.</p>
     
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -496,7 +504,7 @@
     <p>Marc is often the first point of contact for new conveyancing matters and is currently in the process of completing additional qualifications to enhance his understanding of this area of the law.</p>
     
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -509,7 +517,7 @@
     <p>Katelyn manages various administrative tasks and helps maintain smooth communication throughout the office. She will often be the first point of contact for new client matters.</p>
     
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -521,7 +529,7 @@
     <p>Zara is a secretary who works predominantly alongside Caroline McGrath in our civil and criminal department. She provides administrative support and is currently completing her paralegal qualifications.</p>
     
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -537,7 +545,8 @@
       </div>
       <div class="contact__grid">
         <div class="contact__info">
-          <a class="contact__phone" href="tel:+441236731911">01236 731911</a>
+          <a class="contact__phone" href="tel:+441236731911"><span class="visually-hidden">01236 731911</span><span class="digits" aria-hidden="true"><i>0</i><i>1</i><i>2</i><i>3</i><i>6</i><i class="sp"> </i><i>7</i><i>3</i><i>1</i><i>9</i><i>1</i><i>1</i></span></a>
+          <span class="contact__hint" aria-hidden="true">Tap to call</span>
           <dl class="details">
             <div>
               <dt>Open</dt>
@@ -605,9 +614,10 @@
   </section>
 </main>
 
-<div class="call-bar" aria-hidden="true">
-  <a class="btn" href="tel:+441236731911" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Call 01236 731911</span></a>
-</div>
+<nav class="call-bar" aria-label="Quick contact">
+  <a class="btn" href="tel:+441236731911"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Call us</span></a>
+  <a class="btn btn--outline-light" href="#enquiry-form"><span>Send an enquiry</span></a>
+</nav>
 
 
 <footer class="site-footer">
@@ -631,7 +641,7 @@
           <a href="https://twitter.com/CumbernauldLaw" aria-label="X, formerly Twitter" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.5 3zm-1.1 16.2h1.7L7.1 4.7H5.3l11.1 14.5z"/></svg></a>
         </div>
       </div>
-      <div class="footer__col">
+      <div class="footer__col footer__col--find">
         <h2>Find us</h2>
         <address>30 Ettrick Walk<br>Cumbernauld<br>G67 1NE</address>
         <ul>

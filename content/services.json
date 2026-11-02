@@ -11,7 +11,8 @@
       "Adoptions",
       "Separation agreements"
     ],
-    "summary": "Divorce, children, adoption and separation agreements, negotiated where possible and litigated where needed."
+    "summary": "Divorce, children, adoption and separation agreements, negotiated where possible and litigated where needed.",
+    "tags": "Divorce, children, separation"
   },
   {
     "slug": "court-and-criminal",
@@ -24,7 +25,8 @@
       "Actions for payment",
       "Redundancy agreements"
     ],
-    "summary": "Criminal defence, personal injury claims, actions for payment and redundancy agreements."
+    "summary": "Criminal defence, personal injury claims, actions for payment and redundancy agreements.",
+    "tags": "Defence, injury claims, disputes"
   },
   {
     "slug": "private-client",
@@ -39,7 +41,8 @@
       "Powers of attorney",
       "Commercial conveyancing"
     ],
-    "summary": "Buying and selling property, wills, executries, trusts, guardianships and powers of attorney."
+    "summary": "Buying and selling property, wills, executries, trusts, guardianships and powers of attorney.",
+    "tags": "Buying, selling, wills, executries"
   },
   {
     "slug": "specialist-referrals",
@@ -53,6 +56,7 @@
       "Large value personal injury claims",
       "Landlord and tenant issues"
     ],
-    "summary": "Referrals to specialist firms for employment, immigration, company and landlord and tenant matters."
+    "summary": "Referrals to specialist firms for employment, immigration, company and landlord and tenant matters.",
+    "tags": "Employment, immigration, company"
   }
 ]

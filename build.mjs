@@ -114,7 +114,7 @@ const footerHtml = (prefix) => `
           <a href="${firm.social.twitter}" aria-label="X, formerly Twitter" rel="noopener">${icon.x}</a>
         </div>
       </div>
-      <div class="footer__col">
+      <div class="footer__col footer__col--find">
         <h2>Find us</h2>
         <address>${esc(firm.address.line1)}<br>${esc(firm.address.town)}<br>${esc(firm.address.postcode)}</address>
         <ul>
@@ -141,8 +141,10 @@ ${ARTIFACT ? `<script>${js}</script>` : `<script src="${prefix}assets/site.js" d
 const fontsLink = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">`;
+const curtainBoot = `<script>try{if(sessionStorage.getItem('tcl-curtain')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('curtain-pending')}catch(e){}</script>`;
 const artifactHead = ({ title }) => `<title>${esc(title)}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+${curtainBoot}
 ${fontsLink}
 <style>${css}</style>`;
 const headHtml = ({ title, description, prefix, canonical, jsonld, noindex }) => `<!doctype html>
@@ -154,6 +156,7 @@ const headHtml = ({ title, description, prefix, canonical, jsonld, noindex }) =>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${canonical}">
 <meta name="theme-color" content="#69265a">${noindex ? '\n<meta name="robots" content="noindex">' : ''}
+${curtainBoot}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Cumbernauld Law Practice">
 <meta property="og:title" content="${esc(title)}">
@@ -195,6 +198,7 @@ const serviceTiles = services.map((s, i) => {
     <span class="service-tile__cue">${icon.plus}</span>
     <span class="service-tile__title">${esc(s.title)}</span>
     <span class="service-tile__summary">${esc(s.summary)}</span>
+    <span class="service-tile__tags">${esc(s.tags)}</span>
   </button>`;
 }).join('\n');
 
@@ -208,7 +212,7 @@ const serviceTemplates = services.map((s) => `<template id="tpl-${s.slug}">
   </ul>
   <div class="panel__actions">
     <a class="btn" href="${firm.phoneHref}">${icon.phone}<span>Call ${nb(esc(firm.phone))}</span></a>
-    <a class="btn btn--ghost" href="#contact">Send an enquiry</a>
+    <a class="btn btn--ghost" href="#enquiry-form">Send an enquiry</a>
     <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
   </div>
 </template>`).join('\n');
@@ -248,7 +252,7 @@ const personTemplate = (p) => {
     ${p.bio.map((b) => `<p>${esc(b)}</p>`).join('\n    ')}
     ${p.qualifications.length ? `<ul class="person-detail__quals" aria-label="Qualifications">${p.qualifications.map((q) => `<li>${esc(q)}</li>`).join('')}</ul>` : ''}
     <div class="panel__actions person-detail__actions">
-      <a class="btn btn--small" href="#contact">Get in touch ${icon.arrow}</a>
+      <a class="btn btn--small" href="#enquiry-form">Get in touch ${icon.arrow}</a>
       <button class="btn btn--ghost btn--small panel__close" type="button">Close</button>
     </div>
   </div>
@@ -277,12 +281,12 @@ ${headerHtml('home')}
       <div class="hero__inner on-dark">
         <p class="hero__kicker">${esc(firm.tagline)}</p>
         <h1 id="hero-title">Solicitors who know Cumbernauld.</h1>
-        <p class="lead">Family law, court work, house moves, wills and powers of attorney, from a local practice formed by two long-standing Cumbernauld firms. Civil and criminal legal aid where you qualify.</p>
+        <p class="lead"><span class="only-wide">Family law, court work, house moves, wills and powers of attorney, from a local practice formed by two long-standing Cumbernauld firms. Civil and criminal legal aid where you qualify.</span><span class="only-narrow">Family law, court work, house moves and wills. Legal aid where you qualify.</span></p>
         <div class="hero__actions">
           <a class="btn btn--light" href="${firm.phoneHref}">${icon.phone}<span>Call ${nb(esc(firm.phone))}</span></a>
-          <a class="btn btn--outline-light" href="#contact">Send an enquiry ${icon.arrow}</a>
+          <a class="btn btn--outline-light" href="#enquiry-form">Send an enquiry ${icon.arrow}</a>
         </div>
-        <p class="hero__note"><strong>${esc(firm.address.line1)}, Cumbernauld town centre.</strong> ${esc(firm.hours[0].days)}, 9 to 1 and 2 to 5.</p>
+        <p class="hero__note"><strong><span class="only-wide">${esc(firm.address.line1)}, Cumbernauld town centre. </span>${esc(firm.hours[0].days)}, 9 to 1 and 2 to 5.</strong></p>
       </div>
     </div>
   </section>
@@ -296,8 +300,11 @@ ${headerHtml('home')}
       <div class="about__grid">
         <div class="about__story">
           <p>${esc(firm.about)}</p>
-          <p>Six solicitors and trainees work alongside a support team of eight. We handle most matters in-house, and where a case needs a specialist we refer it to another firm at no cost to you.</p>
-          <p>Whether it is a divorce, a court date, a house purchase or a will, you will deal with people who live and work here and who know how things are done locally. We are members of the Law Society of Scotland, and we also act for clients in ${esc(firm.alsoServes.slice(0, -1).join(', '))} and ${esc(firm.alsoServes.slice(-1)[0])}.</p>
+          <details class="about__more" open>
+            <summary>More about the practice</summary>
+            <p>Six solicitors and trainees work alongside a support team of eight. We handle most matters in-house, and where a case needs a specialist we refer it to another firm at no cost to you.</p>
+            <p>Whether it is a divorce, a court date, a house purchase or a will, you will deal with people who live and work here and who know how things are done locally. We are members of the Law Society of Scotland, and we also act for clients in ${esc(firm.alsoServes.slice(0, -1).join(', '))} and ${esc(firm.alsoServes.slice(-1)[0])}.</p>
+          </details>
         </div>
         <div>
           <div class="merge-mark" role="img" aria-label="Barrowman and Partners and Ian S Smart and Company became The Cumbernauld Law Practice on 1 May 2017">
@@ -360,7 +367,8 @@ ${headerHtml('home')}
       </div>
       <div class="contact__grid">
         <div class="contact__info">
-          <a class="contact__phone" href="${firm.phoneHref}">${nb(esc(firm.phone))}</a>
+          <a class="contact__phone" href="${firm.phoneHref}"><span class="visually-hidden">${esc(firm.phone)}</span><span class="digits" aria-hidden="true">${firm.phone.split('').map((ch) => ch === ' ' ? '<i class="sp"> </i>' : `<i>${ch}</i>`).join('')}</span></a>
+          <span class="contact__hint" aria-hidden="true">Tap to call</span>
           <dl class="details">
             <div>
               <dt>Open</dt>
@@ -428,9 +436,10 @@ ${headerHtml('home')}
   </section>
 </main>
 
-<div class="call-bar" aria-hidden="true">
-  <a class="btn" href="${firm.phoneHref}" tabindex="-1">${icon.phone}<span>Call ${nb(esc(firm.phone))}</span></a>
-</div>
+<nav class="call-bar" aria-label="Quick contact">
+  <a class="btn" href="${firm.phoneHref}">${icon.phone}<span>Call us</span></a>
+  <a class="btn btn--outline-light" href="#enquiry-form"><span>Send an enquiry</span></a>
+</nav>
 
 ${footerHtml('')}
 ${ARTIFACT ? '' : '</body>\n</html>'}
